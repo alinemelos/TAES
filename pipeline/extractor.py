@@ -33,13 +33,13 @@ You may extract as entities or actions:
 # OUTPUT FORMAT
 
 Return EXCLUSIVELY valid JSON, with the structure:
-{
+curly-braces
 "actors": [], // external participants mentioned in the text
 "entities": [], // substantive concepts relevant to the domain described in the text
 "events": [], // explicit actions in which someone performs something
 "business_rules": [], // conditions, constraints, or policies explicitly mentioned
-"textual_relations": [] // explicit interactions in the format {"from": "...", "to": "...", "action": "..."}
-}
+"textual_relations": [] // explicit interactions in the format curly-brace"from": "...", "to": "...", "action": "..."curly-brace
+curly-braces
 
 # FINAL RULES
 
