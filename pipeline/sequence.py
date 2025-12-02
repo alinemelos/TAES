@@ -9,48 +9,60 @@ usecase = open("data/usecase.puml").read()
 classes = open("data/classes.puml").read()
 
 prompt = f"""
-Gere um diagrama de SEQUÊNCIA em PlantUML EXCLUSIVAMENTE a partir da entrada, que consiste em:
-1) Um JSON contendo os elementos conceituais extraídos diretamente do texto do estudo de caso.
-2) Um diagrama de CASO DE USO derivado desse JSON.
-3) Um diagrama de CLASSES derivado do caso de uso e das entidades do JSON.
+Consider the following use case scenario (for use case “place order”):
+Use case scenario — “place order”:
+Ali is an existing customer of the order processing company described earlier, registered with their website. Also assume that, having browsed the printed catalogue he owns, he has already identified the two items (including their prices) he wants to buy from the company’s website using their product numbers (i.e., #2 and #9).
+First, he tries to buy one unit of product #2, but it is listed as unavailable in the inventory.
+Then, he adds two units of product #9, which turns out to be available, to his basket.
+He is then asked to confirm his registered shipping and billing addresses and credit card information from the customer database.
+He completes the order by clicking the Submit button.
+You may ignore customer authentication processing.
 
-O diagrama de sequência deve refletir:
-- o fluxo funcional indicado pelo diagrama de CASO DE USO;
-- as interações possíveis dadas pelas classes, métodos e relações do diagrama de CLASSES;
-- e as relações e eventos textuais presentes no JSON.
+Generate a SEQUENCE diagram in PlantUML based EXCLUSIVELY on the above scenario and the input, which consists of:
 
-=== REGRAS ===
+1) A JSON containing the conceptual elements extracted directly from the case study text.
+2) A USE CASE diagram derived from this JSON.
+3) A CLASS diagram derived from the use case and the JSON entities.
 
-1. Não crie novos atores, classes, objetos ou entidades. 
-Use exclusivamente os elementos presentes nas entradas.
+The sequence diagram must reflect:
+- the functional flow indicated by the USE CASE diagram;
+- the possible interactions defined by the classes, methods, and relationships in the CLASS diagram;
+- the textual relationships and events present in the JSON;
+- and the event flow described in the scenario above.
 
-2. Não invente métodos. 
-SOMENTE use métodos já existentes no diagrama de classes.
+# RULES
 
-3. Não crie mensagens, operações ou interações que não sejam compatíveis com o:
+1) Do not create new actors, classes, objects, or entities.
+Use ONLY the elements present in the inputs.
+
+2) Do not invent methods.
+Use ONLY the methods already present in the class diagram.
+
+3) Do not create messages, operations, or interactions that are not compatible with the:
 - JSON,
-- diagrama de caso de uso ou
-- o diagrama de classes.
+- use case diagram,
+- class diagram, or
+- scenario text.
 
-4. A sequência deve representar um fluxo coerente que:
-- inicia pelo ator principal do caso de uso;
-- segue as ações textualmente mencionadas no JSON;
-- utiliza métodos válidos das classes.
+4) The sequence must represent a coherent flow that:
+- begins with the main actor of the use case;
+- follows the actions textually mentioned in the scenario and JSON;
+- uses valid methods from the classes.
 
-5. Preserve todos os nomes exatamente como aparecem.
+5) Preserve all names exactly as they appear.
 
-6. O resultado final deve ser um diagrama UML em PlantUML válido, sem explicações adicionais.
-
-### JSON (fonte de verdade):
+JSON:
 {json.dumps(root, indent=2)}
 
-### Diagrama de caso de uso:
+Use case diagram:
 {usecase}
 
-### Diagrama de classes:
+Class diagram:
 {classes}
 
-Retorne SOMENTE um código PlantUML válido.
+The final result must be a valid UML diagram in PlantUML, with no additional explanations or comments.
+
+Return ONLY a valid PlantUML code.
 """
 
 puml = call_llm(prompt)

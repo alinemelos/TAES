@@ -5,15 +5,15 @@ import json
 root = json.load(open("data/root.json", "r"))
 
 prompt = f"""
-Gere um diagrama de CASO DE USO em PlantUML baseado EXCLUSIVAMENTE no JSON abaixo.
-NÃO adicione elementos novos.
+Generate a USE CASE diagram in PlantUML based EXCLUSIVELY on the JSON below.
+DO NOT add new elements.
 
 JSON:
 {json.dumps(root, indent=2)}
 
-O resultado final deve ser um diagrama UML em PlantUML válido, sem explicações adicionais.
+The final result must be a valid UML diagram in PlantUML, with no additional explanations or comments.
 
-Retorne SOMENTE um código PlantUML válido.
+Return ONLY a valid PlantUML code.
 """
 
 puml = call_llm(prompt)

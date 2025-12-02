@@ -5,55 +5,52 @@ with open("data/study_case.txt") as f:
     text = f.read()
 
 prompt = f"""
-Você é um extrator formal de semântica textual aplicado à engenharia de software.
+You are a formal extractor of textual semantics applied to software engineering.
 
-Sua tarefa é analisar o texto abaixo e extrair um conjunto estruturado de elementos conceituais que representam o domínio descrito.  
-Esses elementos servirão como fonte de verdade para gerar diagramas UML nas etapas seguintes do pipeline.
+Your task is to analyze the text below and extract a structured set of conceptual elements that represent the described domain.
+These elements will serve as a source of truth to generate UML diagrams in later stages of the pipeline.
 
-=== PRINCÍPIOS FUNDAMENTAIS ===
+# FUNDAMENTAL PRINCIPLES
 
-Você deve extrair SOMENTE informações que estejam explícita ou implicitamente ANCORADAS no texto.
-As seguintes regras definem o que você deve e o que não deve inferir:
+You must extract ONLY information that is explicitly or implicitly ANCHORED in the text.
+The following rules define what you must and must not infer:
 
-# PERMITIDO (INFERÊNCIA CONTROLADA)
+## ALLOWED (CONTROLLED INFERENCE)
 
-Você pode extrair como entidades ou ações:
-- participantes mencionados explicitamente;
-- conceitos que aparecem no texto mesmo que não estejam formalizados como classes;
-- ações descritas por frases verbais explícitas;
-- interações claramente descritas entre dois elementos citados;
-- regras de negócio textualmente descritas.
+You may extract as entities or actions:
+- participants explicitly mentioned;
+- concepts that appear in the text even if not formalized as classes;
+- actions described by explicit verbal phrases;
+- interactions clearly described between two cited elements;
+- business rules textually described.
 
-# PROIBIDO (INFERÊNCIA CRIATIVA)
+## PROHIBITED (CREATIVE INFERENCE)
+-Inventing any entity, actor, event, or relationship not present in the text;
+- Creating new names or interpreting additional functionalities;
+- Deducing attributes, methods, or classes not mentioned;
+- Turning generic concepts into technical structures not mentioned in the text.
 
-- Inventar qualquer entidade, ator, evento ou relação não presente no texto;
-- Criar nomes novos ou interpretar funcionalidades adicionais;
-- Deduzir atributos, métodos ou classes não mencionados;
-- Transformar conceitos genéricos em estruturas técnicas não mencionadas no texto.
+# OUTPUT FORMAT
 
-// FORMATO DE SAÍDA
-
-Retorne EXCLUSIVAMENTE um JSON válido, com a estrutura:
-
+Return EXCLUSIVELY valid JSON, with the structure:
 {
-  "atores": [],               // participantes externos mencionados no texto
-  "entidades": [],            // conceitos substantivos relevantes do domínio descrito no texto
-  "eventos": [],              // ações explícitas nas quais alguém realiza algo
-  "regras_de_negocio": [],    // condições, restrições ou políticas explicitamente mencionadas
-  "relacoes_textuais": []     // interações explícitas no formato:
-                              // {"de": "...", "para": "...", "acao": "..."}
+"actors": [], // external participants mentioned in the text
+"entities": [], // substantive concepts relevant to the domain described in the text
+"events": [], // explicit actions in which someone performs something
+"business_rules": [], // conditions, constraints, or policies explicitly mentioned
+"textual_relations": [] // explicit interactions in the format {"from": "...", "to": "...", "action": "..."}
 }
 
-// REGRAS FINAIS
+# FINAL RULES
 
-- Não resuma o texto.
-- Não explique nada.
-- Não inclua comentários.
-- Não altere termos ou nomes.
-- Não gere nenhum conteúdo fora do JSON.
-- O JSON deve ser estritamente válido.
+- Do not summarize the text.
+- Do not explain anything.
+- Do not include comments.
+- Do not alter terms or names.
+- Do not generate any content outside the JSON.
+- The JSON must be strictly valid.
 
--> TEXTO A SER ANALISADO:
+<<TEXT TO BE ANALYZED:>>
 {text}
 """
 

@@ -8,44 +8,43 @@ with open("data/root.json") as f:
 usecase = open("data/usecase.puml").read()
 
 prompt = f"""
-Gere um diagrama de CLASSES em PlantUML EXCLUSIVAMENTE a partir da entrada, que consiste em:
-1) Um JSON contendo os elementos conceituais extraídos diretamente do texto do estudo de caso.
-2) Um diagrama de CASO DE USO derivado desse JSON.
+Generate a CLASS diagram in PlantUML based EXCLUSIVELY on the input, which consists of:
+1) A JSON containing the conceptual elements extracted directly from the case study text.
+2) A USE CASE diagram derived from this JSON.
 
-O diagrama de classes deve derivar SOMENTE desses dois elementos.
-Não adicione nada que não esteja presente no JSON ou no diagrama de caso de uso.
+Do not add anything that is not present in the JSON or in the use case diagram.
 
-=== REGRAS ===
+# RULES
 
-1. Classes podem ser derivadas de:
-   - entidades presentes no JSON ("entidades");
-   - participantes externos relevantes ("atores");
-   - elementos conceituais associados a ações explícitas do JSON ("eventos").
+1) Classes may be derived from:
+- entities present in the JSON ("entities");
+- relevant external participants ("actors");
+- conceptual elements associated with explicit actions in the JSON ("eventos").
 
-2. Você NÃO deve:
-   - inventar novas classes, atributos, métodos ou relacionamentos;
-   - inferir funcionalidades não descritas no JSON;
-   - reinterpretar o diagrama de caso de uso;
-   - criar abstrações além das mencionadas no JSON.
+2) You MUST NOT:
+- invent new classes, attributes, methods, or relationships;
+- infer functionalities not described in the JSON;
+- reinterpret the use case diagram;
+- create abstractions beyond those mentioned in the JSON.
 
-3. Atributos devem ser derivados APENAS de substantivos ou informações descritivas presentes no JSON.
-Não invente atributos técnicos ou generalizações.
+3) Attributes must be derived ONLY from nouns or descriptive information present in the JSON.
+Do not invent technical or generalized attributes.
 
-4. Métodos devem ser derivados APENAS dos eventos ou ações explícitas no JSON.
-Use nomes simples, textualmente baseados no JSON.
+4) Methods must be derived ONLY from events or explicit actions in the JSON.
+Use simple names textually based on the JSON.
 
-5. Relacionamentos entre classes devem refletir relações textuais do JSON e interações derivadas do diagrama de caso de uso.
-Evite relações não mencionadas.
+5) Relationships between classes must reflect textual relations in the JSON and interactions derived from the use case diagram.
+Avoid relationships not mentioned.
 
-6. O resultado final deve ser um diagrama UML em PlantUML válido, sem explicações adicionais.
-
-### JSON (fonte de verdade):
+JSON:
 {json.dumps(root, indent=2)}
 
-### Diagrama de caso de uso:
+Use case diagram:
 {usecase}
 
-Retorne SOMENTE um código PlantUML válido.
+The final result must be a valid UML diagram in PlantUML, with no additional explanations or comments.
+
+Return ONLY a valid PlantUML code.
 """
 
 puml = call_llm(prompt)
