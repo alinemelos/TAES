@@ -6,6 +6,4 @@ A partir das limitações identificadas no artigo *How LLMs Aid in UML Modeling:
 
 [Apresentação do artigo: How LLMs Aid in UML Modeling: An Exploratory Study with Novice Analysts](https://docs.google.com/presentation/d/1_XHR3ZbVUNtv8RIQ02H6bobBwB6cwPssHzlytWeJRzo/edit?usp=sharing)
 
-
 [Apresentação do artigo: Software Architecture Meets LLMs: A Systematic Literature Review](https://docs.google.com/presentation/d/1f35OUQoSeGOZwkDRkqreUdb1TT9pm9pNOr3n-FUx8U8/edit?usp=sharing)
-
